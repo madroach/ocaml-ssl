@@ -1639,12 +1639,10 @@ CAMLprim value ocaml_ssl_shutdown(value socket)
 
   caml_enter_blocking_section();
   ret = SSL_shutdown(ssl);
-  if (!ret)
-    SSL_shutdown(ssl);
   caml_leave_blocking_section();
   /* close(SSL_get_fd(SSL_val(socket))); */
 
-  CAMLreturn(Val_unit);
+  CAMLreturn(Val_int(ret));
 }
 
 /* ======================================================== */

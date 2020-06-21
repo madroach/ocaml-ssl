@@ -418,7 +418,11 @@ val accept : socket -> unit
 (** Flush an SSL connection. *)
 val flush : socket -> unit
 
-(** Close an SSL connection. *)
+(** send close notify to the peer. This is SSL_shutdown(3) *)
+val close_notify : socket -> int
+
+(** Close a SSL connection.
+  * Send close notify to the peer and wait for close notify from peer. *)
 val shutdown : socket -> unit
 
 
